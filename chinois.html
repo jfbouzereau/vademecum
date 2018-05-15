@@ -1,0 +1,191 @@
+<ons-page>
+<style>
+table { border-collapse: collapse; font-size:14px; }
+tr:nth-child(even) {background-color: white; }
+td  {padding-left:10px;line-height:28px; }
+button.button { line-height:16px; }
+td.e { border-bottom:1px solid #909090; }
+td.s { border-bottom:1px solid #909090; }
+</style>
+   <ons-toolbar>
+        <div class="left">
+            <ons-back-button>Menu</ons-back-button>
+        </div>
+		<div class="center">
+			<button class="button minus"> &nbsp; -  &nbsp; </button>
+			&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;
+			<button class="button plus"> &nbsp; +  &nbsp; </button>
+		</div>
+    </ons-toolbar>
+
+
+	<table class="chinois" width="100%" style="">
+		<tr>
+			<td class="y"></td>
+			<td width="30">鼠</td>
+			<td>Rat</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>牛</td>
+			<td>Buffle</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>虎</td>
+			<td>Tigre</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>兔</td>
+			<td>Lièvre</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>龍</td>
+			<td>Dragon</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>蛇</td>
+			<td>Serpent</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>馬</td>
+			<td>Cheval</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>羊</td>
+			<td>Chèvre</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>猴</td>
+			<td>Singe</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>鷄</td>
+			<td>Coq</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>狗</td>
+			<td>Chien</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+		<tr>
+			<td class="y"></td>
+			<td>猪</td>
+			<td>Cochon</td>
+			<td class="e"></td>
+			<td class="s"></td>
+		</tr>
+	</table>
+
+<script>
+	var symboles = ["金","金",
+		"水","水",
+		"木","木",
+		"火","火",
+		"土","土"];
+
+	var elements = ["de métal","de métal",
+		"d'eau","d'eau",
+		"de bois","de bois",
+		"de feu","de feu",
+		"de terre","de terre"];
+
+	var couleurs = ["white","white",
+		"#6666FF","#6666FF",
+		"#66FF66","#66FF66",
+		"red","red",
+		"yellow","yellow"];
+
+	var yref = new Date().getFullYear();
+
+	update();
+
+	document.querySelector("button.plus").addEventListener("click",
+			function() { yref+=12; update() });
+	document.querySelector("button.minus").addEventListener("click",
+			function() { yref-=12; update() })
+
+	function update() {
+		var tdy = document.querySelectorAll(".chinois td.y");
+		var tde = document.querySelectorAll(".chinois td.e");
+		var tds = document.querySelectorAll(".chinois td.s");
+
+		var aref = get_animal(yref);
+		var eref = get_element(yref);
+
+		var a = aref;
+		var e = eref;
+		var y = yref;
+		while(a>=0) {
+			tdy[a].innerText = y;
+			tde[a].innerText = elements[e];
+			tds[a].innerText = symboles[e];
+			tde[a].style.backgroundColor = couleurs[e];
+			tds[a].style.backgroundColor = couleurs[e];
+			a--;
+			y--;
+			e--;
+			if(e<0) e=9;
+			}
+
+		a = aref;
+		e = eref;
+		y = yref;
+		while(a<11) {
+			a++;
+			y++;
+			e = (e+1)%10;
+			tdy[a].innerText = y;
+			tde[a].innerText = elements[e];
+			tds[a].innerText = symboles[e];
+			tde[a].style.backgroundColor = couleurs[e];
+			tds[a].style.backgroundColor = couleurs[e];
+			}
+	}
+
+	function get_animal(y) {
+		var a = 10; // in 2018
+		a = a+y-2018;
+		while(a<0) a+=12;
+		while(a>11) a-=12;
+		return a;
+	}
+
+	function get_element(y) {
+		var e = 8; // in 2018
+		e = e+(y-2018);
+		while(e<0) e+= 10;
+		while(e>9) e-=10;
+		return e;
+	}
+</script>
+</ons-page>

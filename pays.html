@@ -1,0 +1,323 @@
+<ons-page>
+<style>
+table { border-collapse: collapse; font-size:14px; }
+tr:nth-child(even) {background-color: white; }
+td  { padding-left:10px; line-height:28px; }
+</style>
+	<ons-toolbar>
+		<div class="left">
+			<ons-back-button>Menu</ons-back-button>
+		</div>
+
+  <div class="toolbar__center">
+    <div class="segment" style="width:200px;margin:7px 50px;">
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="iso2">
+        <div class="segment__button">ISO2</div>
+      </div>
+
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="iso3">
+        <div class="segment__button">ISO3</div>
+      </div>
+
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="nom">
+        <div class="segment__button">Nom</div>
+      </div>
+
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="cap">
+        <div class="segment__button">Capitale</div>
+      </div>
+    </div>
+  </div>
+
+	</ons-toolbar>
+
+
+	<table width="100%">
+	</table>
+
+<script>
+
+	var data = [
+	["AD","AND","Andorre","Andorre la vieille","EU"],
+	["AE","ARE","Emirats Arabes Unis","Abu Dhabi","AS"],
+	["AF","AFG","Afghanistan","Kaboul","AS"],
+	["AG","ATG","Antigua et Barbuda","St. John's","NA"],
+	["AI","AIA","Anguilla","The Valley","NA"],
+	["AL","ALB","Albanie","Tirana","EU"],
+	["AM","ARM","Armenie","Erevan","AS"],
+	["AO","AGO","Angola","Luanda","AF"],
+	["AQ","ATA","Antarctique","","AN"],
+	["AR","ARG","Argentine","Buenos Aires","SA"],
+	["AS","ASM","Samoa américaines","Pago Pago","OC"],
+	["AT","AUT","Autriche","Vienne","EU"],
+	["AU","AUS","Australie","Canberra","OC"],
+	["AW","ABW","Aruba","Oranjestad","NA"],
+	["AX","ALA","Åland","Mariehamn","EU"],
+	["AZ","AZE","Azerbaïdjan","Bakou","AS"],
+	["BA","BIH","Bosnie Herzegovine","Sarajevo","EU"],
+	["BB","BRB","Barbades","Bridgetown","NA"],
+	["BD","BGD","Bangladesh","Dacca","AS"],
+	["BE","BEL","Belgique","Bruxelles","EU"],
+	["BF","BFA","Burkina Faso","Ouagadougou","AF"],
+	["BG","BGR","Bulgarie","Sofia","EU"],
+	["BH","BHR","Bahreïn","Manama","AS"],
+	["BI","BDI","Burundi","Bujumbura","AF"],
+	["BJ","BEN","Bénin","Cotonou","AF"],
+	["BL","BLM","Saint Barthélemy","Gustavia","NA"],
+	["BM","BMU","Bermude","Hamilton","NA"],
+	["BN","BRN","Brunei","Bandar Seri Begawan","AS"],
+	["BO","BOL","Bolivie","La Paz","SA"],
+	["BR","BRA","Brésil","Brasilia","SA"],
+	["BS","BHS","Bahamas","Nassau","NA"],
+	["BT","BTN","Bhoutan","Thimphou","AS"],
+	["BW","BWA","Botswana","Gaborone","AF"],
+	["BY","BLR","Biélorussie","Minsk","EU"],
+	["BZ","BLZ","Belize","Belmopan","NA"],
+	["CA","CAN","Canada","Ottawa","NA"],
+	["CC","CCK","Iles Cocos","West Island","AS"],
+	["CD","COD","République démocratique du Congo","Kinshasa","AF"],
+	["CF","CAF","République centrafricaine","Bangui","AF"],
+	["CG","COG","République du Congo","Brazzaville","AF"],
+	["CH","CHE","Suisse","Berne","EU"],
+	["CI","CIV","Côte d'ivoire","Yamoussoukro","AF"],
+	["CK","COK","Cook Islands","Avarua","OC"],
+	["CL","CHL","Chili","Santiago","SA"],
+	["CM","CMR","Cameroun","Yaounde","AF"],
+	["CN","CHN","Chine","Beijing","AS"],
+	["CO","COL","Colombie","Bogota","SA"],
+	["CR","CRI","Costa Rica","San Jose","NA"],
+	["CU","CUB","Cuba","Havana","NA"],
+	["CV","CPV","Cap Vert","Praia","AF"],
+	["CW","CUW","Curacao","Willemstad","NA"],
+	["CX","CXR","Christmas Island","Flying Fish Cove","AS"],
+	["CY","CYP","Chypre","Nicosie","EU"],
+	["CZ","CZE","Tchéquie","Prague","EU"],
+	["DE","DEU","Allemagne","Berlin","EU"],
+	["DJ","DJI","Djibouti","Djibouti","AF"],
+	["DK","DNK","Danemark","Copenhagen","EU"],
+	["DM","DMA","Dominique","Roseau","NA"],
+	["DO","DOM","Republique dominicaine","Santo Domingo","NA"],
+	["DZ","DZA","Algérie","Alger","AF"],
+	["EC","ECU","Equateur","Quito","SA"],
+	["EE","EST","Estonie","Tallinn","EU"],
+	["EG","EGY","Egypte","Le Caire","AF"],
+	["EH","ESH","Sahara occidental","El-Aaiun","AF"],
+	["ER","ERI","Eritrée","Asmara","AF"],
+	["ES","ESP","Espagne","Madrid","EU"],
+	["ET","ETH","Ethiopie","Addis Ababa","AF"],
+	["FI","FIN","Finlande","Helsinki","EU"],
+	["FJ","FJI","Fidji","Suva","OC"],
+	["FK","FLK","Falkland Islands","Stanley","SA"],
+	["FM","FSM","Micronesie","Palikir","OC"],
+	["FO","FRO","Faroe Islands","Torshavn","EU"],
+	["FR","FRA","France","Paris","EU"],
+	["GA","GAB","Gabon","Libreville","AF"],
+	["GB","GBR","Royaume-Uni","Londres","EU"],
+	["GD","GRD","Grenade","St. George's","NA"],
+	["GE","GEO","Georgie","Tbilisi","AS"],
+	["GG","GGY","Guernesey","St Peter Port","EU"],
+	["GH","GHA","Ghana","Accra","AF"],
+	["GI","GIB","Gibraltar","Gibraltar","EU"],
+	["GL","GRL","Groenland","Nuuk","NA"],
+	["GM","GMB","Gambie","Banjul","AF"],
+	["GN","GIN","Guinée","Conakry","AF"],
+	["GQ","GNQ","Guinée équatoriale","Malabo","AF"],
+	["GR","GRC","Grèce","Athènes","EU"],
+	["GT","GTM","Guatemala","Guatemala City","NA"],
+	["GU","GUM","Guam","Hagatna","OC"],
+	["GW","GNB","Guinée-Bissau","Bissau","AF"],
+	["GY","GUY","Guyane","Georgetown","SA"],
+	["HK","HKG","Hong Kong","Hong Kong","AS"],
+	["HN","HND","Honduras","Tegucigalpa","NA"],
+	["HR","HRV","Croatie","Zagreb","EU"],
+	["HT","HTI","Haïti","Port-au-Prince","NA"],
+	["HU","HUN","Hongrie","Budapest","EU"],
+	["ID","IDN","Indonesie","Jakarta","AS"],
+	["IE","IRL","Irlande","Dublin","EU"],
+	["IL","ISR","Israel","Jerusalem","AS"],
+	["IN","IND","Inde","New Delhi","AS"],
+	["IQ","IRQ","Iraq","Baghdad","AS"],
+	["IR","IRN","Iran","Téhéran","AS"],
+	["IS","ISL","Islande","Reykjavik","EU"],
+	["IT","ITA","Italie","Rome","EU"],
+	["JE","JEY","Jersey","Saint Helier","EU"],
+	["JM","JAM","Jamaique","Kingston","NA"],
+	["JO","JOR","Jordanie","Amman","AS"],
+	["JP","JPN","Japon","Tokyo","AS"],
+	["KE","KEN","Kenya","Nairobi","AF"],
+	["KG","KGZ","Kirghizistan","Bishkek","AS"],
+	["KH","KHM","Cambodge","Phnom Penh","AS"],
+	["KI","KIR","Kiribati","Tarawa","OC"],
+	["KM","COM","Comores","Moroni","AF"],
+	["KN","KNA","Saint Christophe and Nevis","Basseterre","NA"],
+	["KP","PRK","Corée du Nord","Pyongyang","AS"],
+	["KR","KOR","Corée du Sud","Seoul","AS"],
+	["KW","KWT","Kowait","Kuwait City","AS"],
+	["KY","CYM","Iles Caïmans","George Town","NA"],
+	["KZ","KAZ","Kazakhstan","Astana","AS"],
+	["LA","LAO","Laos","Vientiane","AS"],
+	["LB","LBN","Liban","Beyrouth","AS"],
+	["LC","LCA","Sainte Lucie","Castries","NA"],
+	["LI","LIE","Liechtenstein","Vaduz","EU"],
+	["LK","LKA","Sri Lanka","Colombo","AS"],
+	["LR","LBR","Liberia","Monrovia","AF"],
+	["LS","LSO","Lesotho","Maseru","AF"],
+	["LT","LTU","Lithuanie","Vilnius","EU"],
+	["LU","LUX","Luxembourg","Luxembourg","EU"],
+	["LV","LVA","Lettonie","Riga","EU"],
+	["LY","LBY","Libye","Tripoli","AF"],
+	["MA","MAR","Maroc","Rabat","AF"],
+	["MC","MCO","Monaco","Monaco","EU"],
+	["MD","MDA","Moldavie","Chisinau","EU"],
+	["ME","MNE","Montenégro","Podgorica","EU"],
+	["MF","MAF","Saint Martin","Marigot","NA"],
+	["MG","MDG","Madagascar","Antananarivo","AF"],
+	["MH","MHL","Iles Marshall","Majuro","OC"],
+	["MK","MKD","Macedonie","Skopje","EU"],
+	["ML","MLI","Mali","Bamako","AF"],
+	["MM","MMR","Myanmar","Nay Pyi Taw","AS"],
+	["MN","MNG","Mongolie","Ulan Bator","AS"],
+	["MO","MAC","Macao","Macao","AS"],
+	["MP","MNP","Iles Marianne du Nord","Saipan","OC"],
+	["MR","MRT","Mauritanie","Nouakchott","AF"],
+	["MS","MSR","Montserrat","Plymouth","NA"],
+	["MT","MLT","Malte","Valletta","EU"],
+	["MU","MUS","Maurice","Port Louis","AF"],
+	["MV","MDV","Maldives","Male","AS"],
+	["MW","MWI","Malawi","Lilongwe","AF"],
+	["MX","MEX","Mexique","Mexico City","NA"],
+	["MY","MYS","Malaisie","Kuala Lumpur","AS"],
+	["MZ","MOZ","Mozambique","Maputo","AF"],
+	["NA","NAM","Namibie","Windhoek","AF"],
+	["NC","NCL","Nouvelle-Calédonie","Noumea","OC"],
+	["NE","NER","Niger","Niamey","AF"],
+	["NF","NFK","Norfolk Island","Kingston","OC"],
+	["NG","NGA","Nigeria","Abuja","AF"],
+	["NI","NIC","Nicaragua","Managua","NA"],
+	["NL","NLD","Pays-Bas","Amsterdam","EU"],
+	["NO","NOR","Norvège","Oslo","EU"],
+	["NP","NPL","Népal","Kathmandu","AS"],
+	["NR","NRU","Nauru","Yaren","OC"],
+	["NU","NIU","Niue","Alofi","OC"],
+	["NZ","NZL","Nouvelle-Zélande","Wellington","OC"],
+	["OM","OMN","Oman","Muscat","AS"],
+	["PA","PAN","Panama","Panama City","NA"],
+	["PE","PER","Perou","Lima","SA"],
+	["PF","PYF","Polynesie Française","Papeete","OC"],
+	["PG","PNG","Papouasie Nouvelle-Guinée","Port Moresby","OC"],
+	["PH","PHL","Philippines","Manila","AS"],
+	["PK","PAK","Pakistan","Islamabad","AS"],
+	["PL","POL","Pologne","Varsovie","EU"],
+	["PN","PCN","Pitcairn Islands","Adamstown","OC"],
+	["PR","PRI","Porto Rico","San Juan","NA"],
+	["PS","PSE","Palestine","East Jerusalem","AS"],
+	["PT","PRT","Portugal","Lisbon","EU"],
+	["PW","PLW","Palau","Melekeok","OC"],
+	["PY","PRY","Paraguay","Asuncion","SA"],
+	["QA","QAT","Qatar","Doha","AS"],
+	["RO","ROU","Roumanie","Bucarest","EU"],
+	["RS","SRB","Serbie","Belgrade","EU"],
+	["RU","RUS","Russie","Moscou","EU"],
+	["RW","RWA","Rwanda","Kigali","AF"],
+	["SA","SAU","Arabie Saoudite","Riyad","AS"],
+	["SB","SLB","Iles Solomon","Honiara","OC"],
+	["SC","SYC","Seychelles","Victoria","AF"],
+	["SD","SDN","Soudan","Khartoum","AF"],
+	["SE","SWE","Suède","Stockholm","EU"],
+	["SG","SGP","Singapour","Singapour","AS"],
+	["SH","SHN","Sainte Helene","Jamestown","AF"],
+	["SI","SVN","Slovenie","Ljubljana","EU"],
+	["SJ","SJM","Svalbard","Longyearbyen","EU"],
+	["SK","SVK","Slovaquie","Bratislava","EU"],
+	["SL","SLE","Sierra Leone","Freetown","AF"],
+	["SM","SMR","San Marin","San Marino","EU"],
+	["SN","SEN","Sénégal","Dakar","AF"],
+	["SO","SOM","Somalie","Mogadishu","AF"],
+	["SR","SUR","Suriname","Paramaribo","SA"],
+	["SS","SSD","Sud Soudan","Juba","AF"],
+	["ST","STP","São Tomé et Príncipe","Sao Tome","AF"],
+	["SV","SLV","El Salvador","San Salvador","NA"],
+	["SX","SXM","Sint Maarten","Philipsburg","NA"],
+	["SY","SYR","Syria","Damascus","AS"],
+	["SZ","SWZ","Swaziland","Mbabane","AF"],
+	["TC","TCA","Iles Turques et Caïques","Cockburn Town","NA"],
+	["TD","TCD","Tchad","N'Djamena","AF"],
+	["TF","ATF","French Southern Territories","Port-aux-Francais","AN"],
+	["TG","TGO","Togo","Lome","AF"],
+	["TH","THA","Thailande","Bangkok","AS"],
+	["TJ","TJK","Tajikistan","Dushanbe","AS"],
+	["TK","TKL","Tokelau","","OC"],
+	["TL","TLS","Timor Oriental","Dili","OC"],
+	["TM","TKM","Turkmenistan","Ashgabat","AS"],
+	["TN","TUN","Tunisie","Tunis","AF"],
+	["TO","TON","Tonga","Nuku'alofa","OC"],
+	["TR","TUR","Turquie","Ankara","AS"],
+	["TT","TTO","Trinidad et Tobago","Port of Spain","NA"],
+	["TV","TUV","Tuvalu","Funafuti","OC"],
+	["TW","TWN","Taiwan","Taipei","AS"],
+	["TZ","TZA","Tanzanie","Dodoma","AF"],
+	["UA","UKR","Ukraine","Kiev","EU"],
+	["UG","UGA","Ouganda","Kampala","AF"],
+	["US","USA","Etats-Unis","Washington","NA"],
+	["UY","URY","Uruguay","Montevideo","SA"],
+	["UZ","UZB","Ouzbekistan","Tashkent","AS"],
+	["VA","VAT","Vatican","Vatican","EU"],
+	["VC","VCT","Saint Vincent","Kingstown","NA"],
+	["VE","VEN","Vénézuela","Caracas","SA"],
+	["VG","VGB","British Virgin Islands","Road Town","NA"],
+	["VI","VIR","U.S. Virgin Islands","Charlotte Amalie","NA"],
+	["VN","VNM","Vietnam","Hanoi","AS"],
+	["VU","VUT","Vanuatu","Port Vila","OC"],
+	["WF","WLF","Wallis et Futuna","Mata Utu","OC"],
+	["WS","WSM","Samoa","Apia","OC"],
+	["XK","XKX","Kosovo","Pristina","EU"],
+	["YE","YEM","Yémen","Sanaa","AS"],
+	["YT","MYT","Mayotte","Mamoudzou","AF"],
+	["ZA","ZAF","Afrique du Sud","Pretoria","AF"],
+	["ZM","ZMB","Zambie","Lusaka","AF"],
+	["ZW","ZWE","Zimbabwe","Harare","AF"]
+	];
+
+    document.querySelector(".segment").addEventListener("click",click);
+    function click(event) {
+        var name = event.target.getAttribute("name");
+        if(name) activate(name);
+    }
+    function activate(name) {
+        var inputs = document.querySelectorAll("input");    
+        for(var i=0;i<inputs.length;i++)
+            inputs[i].checked = inputs[i].getAttribute('name')==name;
+
+		if(name=="iso2")
+			data.sort(compare_iso2);
+		else if(name=="iso3")
+			data.sort(compare_iso3);
+		else if(name=="nom")
+			data.sort(compare_nom);
+		else if(name=="cap")
+			data.sort(compare_cap);
+
+		var t = "";
+		for(var i=0;i<data.length;i++)
+			t += "<tr>"+
+				"<td>"+data[i][0]+"</td>"+
+				"<td>"+data[i][1]+"</td>"+
+				"<td>"+data[i][2]+"</td>"+
+				"<td>"+data[i][3]+"</td>"+
+				"</tr>";
+		document.querySelector("table").innerHTML = t;
+    }
+
+    activate("nom");
+
+
+	function compare_iso2(a,b) { return a[0].localeCompare(b[0]) }
+	function compare_iso3(a,b) { return a[1].localeCompare(b[1]) }
+	function compare_nom(a,b) { return a[2].localeCompare(b[2]) }
+	function compare_cap(a,b) { return a[3].localeCompare(b[3]) }
+</script>
+</ons-page>

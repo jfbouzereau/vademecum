@@ -1,0 +1,50 @@
+<ons-page>
+<style>
+#cesarinput { width:100%; }
+#cesarreply	{ font-family:Courier; font-size:18px; padding-left:10px; }
+</style>
+
+   <ons-toolbar>
+        <div class="left">
+            <ons-back-button>Menu</ons-back-button>
+        </div>
+        <div class="center">Code César</div>
+    </ons-toolbar>
+
+	<input id="cesarinput" type="text" class="text-input text-input--underbar" 
+		autocorrect="off" autocapitalize="none"
+		placeholder="Tapez du texte ici" value=""> 
+	<br>
+
+	<div id="cesarreply">
+	</div>
+
+<script>
+	var alpha = "abcdefghijklmnopqrstuvwxyz";
+
+	var input = document.querySelector("#cesarinput");
+	input.addEventListener("keyup",keyup);
+
+	var reply = document.querySelector("#cesarreply");
+
+	function keyup() {
+		var value = input.value.toLowerCase();
+
+		var t= "";
+		for(i=0;i<26;i++)
+			{
+			for(var j=0;j<value.length;j++)
+				{
+				var k = alpha.indexOf(value[j]);
+				if(k<0)
+					t += value[j];
+				else
+					t += alpha[(k+i)%alpha.length];
+				}
+			t += "<br>";
+			}
+
+		reply.innerHTML = t;
+	}
+</script>
+</ons-page>

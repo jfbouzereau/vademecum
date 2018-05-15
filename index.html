@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
+</head>
+<body>
+<ons-navigator id="navigator" page="menu.html">
+</body>
+<script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
+<script>
+if('serviceWorker' in navigator) 
+	if(location.protocol=="https:")
+		window.addEventListener('load', register_service_worker);
+
+function register_service_worker() {
+    navigator.serviceWorker.register('sw.js')
+      .then(() => console.log("Service Worker Registered"))
+      .catch(e => console.log(e));
+}
+
+var nav = document.querySelector("ons-navigator");
+nav.addEventListener("click",click);
+function click(event) {
+	var href = event.target.getAttribute("href");
+	if(href) nav.pushPage(href);
+}
+</script>
+</html>

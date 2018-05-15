@@ -1,0 +1,131 @@
+<ons-page>
+<style>
+table { border-collapse: collapse; font-size:14px; }
+tr:nth-child(even) {background-color: white; }
+td  {padding-left:10px; line-height:28px; }
+</style>
+	<ons-toolbar>
+		<div class="left">
+			<ons-back-button>Menu</ons-back-button>
+		</div>
+
+  <div class="toolbar__center">
+    <div class="segment" style="width:200px;margin:7px 50px;">
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="age">
+        <div class="segment__button">Par années</div>
+      </div>
+
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="nom">
+        <div class="segment__button">Par noms</div>
+      </div>
+    </div>
+  </div>
+
+	</ons-toolbar>
+
+
+	<table width="100%">
+	</table>
+
+<script>
+	var data = [
+		[1,"coton"],
+		[2,"cuir"],
+		[3,"froment"],
+		[4,"cire"],
+		[5,"bois"],
+		[6,"chypre"],
+		[7,"laine"],
+		[8,"coquelicot"],
+		[9,"faïence"],
+		[10,"étain"],
+		[11,"corail"],
+		[12,"soie"],
+		[13,"muguet"],
+		[14,"plomb"],
+		[15,"cristal"],
+		[16,"saphir"],
+		[17,"rose"],
+		[18,"turquoise"],
+		[19,"cretonne"],
+		[20,"porcelaine"],
+		[21,"opale"],
+		[22,"bronze"],
+		[23,"béryl"],
+		[24,"satin"],
+		[25,"argent"],
+		[26,"jade"],
+		[27,"acajou"],
+		[28,"nickel"],
+		[29,"velours"],
+		[30,"perle"],
+		[31,"basane"],
+		[32,"cuivre"],
+		[33,"porphyre"],
+		[34,"ambre"],
+		[35,"rubis"],
+		[36,"mousseline"],
+		[37,"papier"],
+		[38,"mercure"],
+		[39,"crêpe"],
+		[40,"émeraude"],
+		[41,"fer"],
+		[42,"nacre"],
+		[43,"flanelle"],
+		[44,"topaze"],
+		[45,"vermeil"],
+		[46,"lavande"],
+		[47,"cachemire"],
+		[48,"améthyste"],
+		[49,"cèdre"],
+		[50,"or"],
+		[51,"camélia "],
+		[52,"tourmaline"],
+		[53,"merisier"],
+		[54,"zibeline"],
+		[55,"orchidée"],
+		[56,"buis"],
+		[57,"azalée"],
+		[58,"érable"],
+		[59,"olivier"],
+		[60,"diamant"],
+		[61,"platane"],
+		[62,"ivoire"],
+		[63,"lilas"],
+		[64,"astrakan"],
+		[65,"palissandre"],
+		[66,"jasmin"],
+		[67,"chinchilla"],
+		[68,"granit"],
+		[69,"mélèze"],
+		[70,"platine"],
+		[75,"albâtre"],
+		[80,"chêne"]
+		];
+
+    document.querySelector(".segment").addEventListener("click",click);
+    function click(event) {
+        var name = event.target.getAttribute("name");
+        if(name) activate(name);
+    }
+    function activate(name) {
+        var inputs = document.querySelectorAll("input");    
+        for(var i=0;i<inputs.length;i++)
+            inputs[i].checked = inputs[i].getAttribute('name')==name;
+
+		data.sort(name=="age" ? compare_age : compare_nom);
+
+		var t = "";
+		for(var i=0;i<data.length;i++)
+			t += "<tr><td width='60px'>"+data[i][0]+"</td><td>"+data[i][1]+"</td></tr>";
+
+		document.querySelector("table").innerHTML = t;
+    }
+    activate("age");
+
+	function compare_age(a,b) { return a[0]-b[0] }
+	function compare_nom(a,b) { return a[1].localeCompare(b[1]) }
+</script>
+</ons-page>

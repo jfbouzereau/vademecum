@@ -1,0 +1,129 @@
+<ons-page>
+<style>
+table { border-collapse: collapse; font-size:14px; }
+tr:nth-child(even) {background-color: white; }
+td  { padding-left:10px; line-height:28px; }
+</style>
+	<ons-toolbar>
+		<div class="left">
+			<ons-back-button>Menu</ons-back-button>
+		</div>
+
+  <div class="toolbar__center">
+    <div class="segment" style="width:200px;margin:7px 50px;">
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="code">
+        <div class="segment__button">Par code</div>
+      </div>
+
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="nom">
+        <div class="segment__button">Par nom</div>
+      </div>
+
+      <div class="segment__item">
+        <input type="radio" class="segment__input" name="cap">
+        <div class="segment__button">Par cap.</div>
+      </div>
+
+    </div>
+  </div>
+
+	</ons-toolbar>
+
+
+	<table width="100%">
+	</table>
+
+<script>
+
+	var data = [
+		["AL","Alabama","Montgomery"],
+		["AK","Alaska","Juneau"],
+		["AZ","Arizona","Phoenix"],
+		["AR","Arkansas","Little Rock"],
+		["CA","Californie","Sacramento"],
+		["NC","Caroline du Nord","Raleigh"],
+		["SC","Caroline du Sud","Columbia"],
+		["CO","Colorado","Denver"],
+		["CT","Connecticut","Hartford"],
+		["ND","Dakota du Nord","Bismarck"],
+		["SD","Dakota du Sud","Pierre"],
+		["DE","Delaware","Dover"],
+		["FL","Floride","Tallahassee"],
+		["GA","Géorgie","Atlanta"],
+		["HI","Hawaï","Honolulu"],
+		["ID","Idaho","Boise"],
+		["IL","Illinois","Springfield"],
+		["IN","Indiana","Indianapolis"],
+		["IA","Iowa","Des Moines"],
+		["KS","Kansas","Topeka"],
+		["KY","Kentucky","Frankfort"],
+		["LA","Louisiane","Bâton-Rouge"],
+		["ME","Maine","Augusta"],
+		["MD","Maryland","Annapolis"],
+		["MA","Massachusetts","Boston"],
+		["MI","Michigan","Lansing"],
+		["MN","Minnesota","Saint Paul"],
+		["MS","Mississippi","Jackson"],
+		["MO","Missouri","Jefferson City"],
+		["MT","Montana","Helena"],
+		["NE","Nebraska","Lincoln"],
+		["NV","Nevada","Carson City"],
+		["NH","New Hampshire","Concord"],
+		["NJ","New Jersey","Trenton"],
+		["NM","Nouveau-Mexique","Santa Fe"],
+		["NY","New York","Albany"],
+		["OH","Ohio","Columbus"],
+		["OK","Oklahoma","Oklahoma City"],
+		["OR","Oregon","Salem"],
+		["PA","Pennsylvanie","Harrisburg"],
+		["RI","Rhode Island","Providence"],
+		["TN","Tennessee","Nashville"],
+		["TX","Texas","Austin"],
+		["UT","Utah","Salt Lake City"],
+		["VT","Vermont","Montpelier"],
+		["VA","Virginie","Richmond"],
+		["WV","Virginie-Occidentale","Charleston"],
+		["WA","Washington","Olympia"],
+		["WI","Wisconsin","Madison"],
+		["WY","Wyoming","Cheyenne"]
+	];
+
+
+    document.querySelector(".segment").addEventListener("click",click);
+    function click(event) {
+        var name = event.target.getAttribute("name");
+        if(name) activate(name);
+    }
+    function activate(name) {
+        var inputs = document.querySelectorAll("input");    
+        for(var i=0;i<inputs.length;i++)
+            inputs[i].checked = inputs[i].getAttribute('name')==name;
+
+		if(name=="code")
+			data.sort(compare_code);
+		else if(name=="nom")
+			data.sort(compare_nom);
+		else if(name=="cap")
+			data.sort(compare_cap);
+
+		var t = "";
+		for(var i=0;i<data.length;i++)
+			t += "<tr>"+
+				"<td>"+(i+1)+"</td>"+
+				"<td>"+data[i][0]+"</td>"+
+				"<td>"+data[i][1]+"</td>"+
+				"<td>"+data[i][2]+"</td>"+
+				"</tr>";
+		document.querySelector("table").innerHTML = t;
+    }
+
+    activate("nom");
+
+
+	function compare_code(a,b) { return a[0].localeCompare(b[0]) }
+	function compare_nom(a,b) { return a[1].localeCompare(b[1]) }
+	function compare_cap(a,b) { return a[2].localeCompare(b[2]) }
+</script>
+</ons-page>
