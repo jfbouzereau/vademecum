@@ -9,7 +9,7 @@ web app), ce qui permet de l'installer sur la page d'accueil
 du téléphone.
 
 Vous pouvez accéder une version ici :
-[https://spot.servehttp.com:9000/vademecum](https://spot.servehttp.com:9000/vademecum)
+[https://spot.servehttp.com/vademecum/](https://spot.servehttp.com/vademecum/)
 
 
 # Liste des rubriques
