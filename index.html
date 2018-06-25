@@ -2,12 +2,14 @@
 <html>
 <head>
 <meta charset="utf-8">
-<link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.css">
+<title>Vademecum</title>
+<link rel="manifest" href="/vademecum/manifest.json">
+<link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsenui.min.css">
 <link rel="stylesheet" href="https://unpkg.com/onsenui/css/onsen-css-components.min.css">
 </head>
 <body>
-<ons-navigator id="navigator" page="menu.html">
+<ons-navigator id="navigator" page="/vademecum/menu.html">
+<noscript>Javascript must be enabled</noscript>
 </body>
 <script src="https://unpkg.com/onsenui/js/onsenui.min.js"></script>
 <script>
@@ -16,7 +18,7 @@ if('serviceWorker' in navigator)
 		window.addEventListener('load', register_service_worker);
 
 function register_service_worker() {
-    navigator.serviceWorker.register('sw.js')
+    navigator.serviceWorker.register('/vademecum/sw.js')
       .then(() => console.log("Service Worker Registered"))
       .catch(e => console.log(e));
 }

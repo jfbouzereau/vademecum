@@ -1,92 +1,110 @@
-// 1. Save the files to the user's device
-// The "install" event is called when the ServiceWorker starts up.
+var paths = [
+		'/vademecum/',
+		'/vademecum/manifest.json',
+		'/vademecum/index.html',
+		'/vademecum/menu.html',
+		'/vademecum/betamaze.html',
+		'/vademecum/betamaze.png',
+		'/vademecum/baudot.html',
+		'/vademecum/braille.html',
+		'/vademecum/dotsies.html',
+		'/vademecum/dotsies.png',
+		'/vademecum/herbin.html',
+		'/vademecum/herbin.png',
+		'/vademecum/danse.html',
+		'/vademecum/danse.png',
+		'/vademecum/blank30.png',
+		'/vademecum/morse.html',
+		'/vademecum/pavillon.html',
+		'/vademecum/pavillon.png',
+		'/vademecum/blank50x50.png',
+		'/vademecum/phonetique.html',
+		'/vademecum/pigpen.html',
+		'/vademecum/pigpen.png',
+		'/vademecum/quipu.html',
+		'/vademecum/quipu.png',
+		'/vademecum/rimbaud.html',
+		'/vademecum/runes.html',
+		'/vademecum/runes.png',
+		'/vademecum/scrabble.html',
+		'/vademecum/semaphore.html',
+		'/vademecum/semaphore.png',
+		'/vademecum/blank.png',
+		'/vademecum/telegraphe.html',
+		'/vademecum/telegraphe.png',
+		'/vademecum/noces.html',
+		'/vademecum/patrons.html',
+		'/vademecum/saints.html',
+		'/vademecum/zodiaque.html',
+		'/vademecum/chinois.html',
+		'/vademecum/cartes.html',
+		'/vademecum/cesar.html',
+		'/vademecum/fleurs.html',
+		'/vademecum/france-carte.html',
+		'/vademecum/carte.png',
+		'/vademecum/quartiers.html',
+		'/vademecum/france-departements.html',
+		'/vademecum/pays.html',
+		'/vademecum/aeroports.html',
+		'/vademecum/drapeaux.html',
+		'/vademecum/drapeaux.png',
+		'/vademecum/blank55x40.png',
+		'/vademecum/usa.html',
+		'/vademecum/merveilles.html',
+		'/vademecum/muses.html',
+		'/vademecum/hercule.html',
+		'/vademecum/elements.html',
+		'/vademecum/resistances.html',
+		'/vademecum/lactee.html',
+		'/vademecum/lactee.png',
+		'/vademecum/blank25x25.png',
+        'https://unpkg.com/onsenui/css/onsenui.min.css',
+        'https://unpkg.com/onsenui/css/onsen-css-components.min.css',
+        'https://unpkg.com/onsenui/js/onsenui.min.js',
+		'https://unpkg.com/onsenui/css/ionicons/css/ionicons.min.css',
+		'https://unpkg.com/onsenui/css/material-design-iconic-font/css/material-design-iconic-font.min.css',
+		'https://unpkg.com/onsenui/css/font_awesome/css/font-awesome.min.css'
+      ];
+
+
 // All ServiceWorker code must be inside events.
+
+self.addEventListener('activate', function(e) {
+	console.log('service worker activated');
+});
 
 self.addEventListener('install', function(e) {
   console.log('installing the cached files...');
-
-  // waitUntil we have cached all of our files
 
   e.waitUntil(
 
     caches.open('vademecumpwa').then(cache => {
 		console.log('loading the cached files...');
-      // If any of these resources fails, _none_ will be added to the cache !
 
-	var status = cache.addAll([
-		'manifest.json',
-		'index.html',
-		'menu.html',
-		'betamaze.html',
-		'betamaze.png',
-		'baudot.html',
-		'braille.html',
-		'dotsies.html',
-		'dotsies.png',
-		'herbin.html',
-		'herbin.png',
-		'danse.html',
-		'danse.png',
-		'blank30.png',
-		'morse.html',
-		'pavillon.html',
-		'pavillon.png',
-		'blank50x50.png',
-		'phonetique.html',
-		'pigpen.html',
-		'pigpen.png',
-		'quipu.html',
-		'quipu.png',
-		'rimbaud.html',
-		'runes.html',
-		'runes.png',
-		'scrabble.html',
-		'semaphore.html',
-		'semaphore.png',
-		'blank.png',
-		'telegraphe.html',
-		'telegraphe.png',
-		'noces.html',
-		'saints.html',
-		'zodiaque.html',
-		'chinois.html',
-		'cartes.html',
-		'cesar.html',
-		'fleurs.html',
-		'france-carte.html',
-		'carte.png',
-		'quartiers.html',
-		'france-departements.html',
-		'pays.html',
-		'aeroports.html',
-		'drapeaux.html',
-		'drapeaux.png',
-		'blank55x40.png',
-		'usa.html',
-		'merveilles.html',
-		'muses.html',
-		'hercule.html',
-		'elements.html',
-		'resistances.html',
-		'lactee.html',
-		'lactee.png',
-		'blank25x25.png',
-        'https://unpkg.com/onsenui/css/onsenui.min.css',
-        'https://unpkg.com/onsenui/css/onsen-css-components.min.css',
-        'https://unpkg.com/onsenui/js/onsenui.min.js'
-      ]);
-	console.log('status '+status);
+	var status = cache.addAll(paths);
+	console.log('caching status '+status);
 	 return status;
     })
   );
 });
 
-// 2. Intercept requests and return the cached version instead
 
 self.addEventListener('fetch', function(e) {
+	console.log("fetching ...");
   e.respondWith(
     caches.match(e.request)
-      // Return the cached file, or else try to get it from the server
-      .then(response => response || fetch(e.request))
-  );
+      .then(function(response) {
+			if(response)
+				{
+				console.log("  returning cached version of "+e.request.url);
+				return response;
+				}
+			else
+				{
+				console.log("  fetching through network "+e.request.url);
+				return fetch(e.request);
+				}
+		}
+	)
+	);
 });
